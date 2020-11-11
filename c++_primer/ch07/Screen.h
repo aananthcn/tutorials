@@ -7,35 +7,44 @@ using namespace std;
 
 class Screen {
 public:
+    // member variables
     typedef string::size_type len;
+
+    // constructors and destructors
     Screen() = default;
     Screen(len x, len y, char c): height(y), width(x), contents(x*y, c) {}
-    void print();
 
+    // member functions
     inline char get(len x, len y) const;
     Screen& set(len x, len y, char c);
     Screen& set(char c);
     Screen& move(len x, len y);
+    Screen& display(ostream& os) { do_display(os); return *this; }
+    const Screen& display(ostream& os) const { do_display(os); return *this; }
 
 private:
+    // member variables
     len cursor = 0;
     len height = 0, width = 0;
     string contents;
+
+    // member functions
+    void do_display(ostream& os) const;
 };
 
 inline
-void Screen::print() {
-    cout << "---\n";
+void Screen::do_display(ostream& os) const {
+    os << "---\n";
     for (auto i = 0; i < contents.length(); i++) {
-        cout << contents[i];
+        os << contents[i];
         if ((i != 0) && ((i+1) % width == 0)) {
-            cout << "\n";
+            os << "\n";
         }
         else {
-            cout << " ";
+            os << " ";
         }
     }
-    cout << "\n";
+    os << "\n";
 }
 
 inline
