@@ -12,13 +12,13 @@ public:
 
     // constructors and destructors
     Screen() = default;
-    Screen(len x, len y, char c): height(y), width(x), contents(x*y, c) {}
+    Screen(len r, len c, char ch): height(r), width(c), contents(r*c, ch) {}
 
     // member functions
-    inline char get(len x, len y) const;
-    Screen& set(len x, len y, char c);
-    Screen& set(char c);
-    Screen& move(len x, len y);
+    inline char get(len r, len c) const;
+    Screen& set(len r, len c, char ch);
+    Screen& set(char ch);
+    Screen& move(len r, len c);
     Screen& display(ostream& os) { do_display(os); return *this; }
     const Screen& display(ostream& os) const { do_display(os); return *this; }
 
@@ -48,20 +48,20 @@ void Screen::do_display(ostream& os) const {
 }
 
 inline
-Screen& Screen::move(len x, len y) {
-    cursor = width * y + x; 
+Screen& Screen::move(len r, len c) {
+    cursor = width * r + c; 
     return *this;
 }
 
 inline
-Screen& Screen::set(len x, len y, char c) {
-    contents[width * y + x] = c;
+Screen& Screen::set(len r, len c, char ch) {
+    contents[width * r + c] = ch;
     return *this;
 }
 
 inline
-Screen& Screen::set(char c) {
-    contents[cursor] = c;
+Screen& Screen::set(char ch) {
+    contents[cursor] = ch;
     return *this;
 }
 
