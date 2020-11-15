@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+baba o basic_streambuf
+
+#include "WindowMgr.h"
+
 using namespace std;
 
 class Screen {
@@ -27,6 +31,9 @@ private:
     len cursor = 0;
     len height = 0, width = 0;
     string contents;
+
+    // friends
+    friend class WindowMgr;
 
     // member functions
     void do_display(ostream& os) const;

@@ -2,13 +2,9 @@
 #include <vector>
 
 #include "Screen.h"
+#include "WindowMgr.h"
 
 using namespace std;
-
-class WindowMgr {
-public:
-    vector<Screen> screens { Screen(24, 80, ' '), Screen(40, 80, '0') };
-};
 
 
 int main() {
