@@ -40,17 +40,20 @@ private:
 
 inline
 void Screen::do_display(ostream& os) const {
-    os << "---\n";
+    os << "[\n";
     for (auto i = 0; i < contents.length(); i++) {
-        os << contents[i];
+        if (contents[i] != ' ')
+            os << contents[i];
+        else
+            os << '.';
         if ((i != 0) && ((i+1) % width == 0)) {
             os << "\n";
         }
-        else {
-            os << " ";
-        }
+        //else {
+        //    os << " ";
+        //}
     }
-    os << "\n";
+    os << "] size: " << width << " x " << height << endl;
 }
 
 inline
