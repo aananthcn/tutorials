@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-//#include "WindowMgr.h"
+// class declaration
 class WindowMgr;
 
 using namespace std;
@@ -11,24 +11,24 @@ using namespace std;
 class Screen {
 public:
     // member variables
-    typedef string::size_type len;
+    typedef string::size_type pos;
 
     // constructors and destructors
     Screen() = default;
-    Screen(len r, len c, char ch): height(r), width(c), contents(r*c, ch) {}
+    Screen(pos r, pos c, char ch): height(r), width(c), contents(r*c, ch) {}
 
     // member functions
-    inline char get(len r, len c) const;
-    Screen& set(len r, len c, char ch);
+    inline char get(pos r, pos c) const;
+    Screen& set(pos r, pos c, char ch);
     Screen& set(char ch);
-    Screen& move(len r, len c);
+    Screen& move(pos r, pos c);
     Screen& display(ostream& os) { do_display(os); return *this; }
     const Screen& display(ostream& os) const { do_display(os); return *this; }
 
 private:
     // member variables
-    len cursor = 0;
-    len height = 0, width = 0;
+    pos cursor = 0;
+    pos height = 0, width = 0;
     string contents;
 
     // friends
@@ -62,13 +62,13 @@ void Screen::do_display(ostream& os) const {
 }
 
 inline
-Screen& Screen::move(len r, len c) {
+Screen& Screen::move(pos r, pos c) {
     cursor = width * r + c; 
     return *this;
 }
 
 inline
-Screen& Screen::set(len r, len c, char ch) {
+Screen& Screen::set(pos r, pos c, char ch) {
     contents[width * r + c] = ch;
     return *this;
 }
