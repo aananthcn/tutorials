@@ -3,9 +3,8 @@
 
 #include <iostream>
 
-baba o basic_streambuf
-
-#include "WindowMgr.h"
+//#include "WindowMgr.h"
+class WindowMgr;
 
 using namespace std;
 
