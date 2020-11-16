@@ -17,6 +17,9 @@ public:
     // reset the Screen at the given position to all blanks
     void clear(ScreenIndex);
 
+    // add a Screen to the window and returns its index
+    ScreenIndex addScreen(const Screen&);
+
     // aananth's functions
     int screen_mem_size() { return sizeof(screens); }
     Screen& display_screen(ScreenIndex, ostream&);
@@ -36,6 +39,12 @@ void WindowMgr::clear(ScreenIndex i) {
 inline
 Screen& WindowMgr::display_screen(ScreenIndex i, ostream& os) {
     screens[i].display(os);
+}
+
+inline
+WindowMgr::ScreenIndex WindowMgr::addScreen(const Screen& scr) {
+    screens.push_back(scr);
+    return screens.size() - 1;
 }
 
 #endif
