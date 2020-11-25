@@ -11,6 +11,7 @@ public:
 
   	  	// constructor
   	  	Sales_data() : bookNo("00-000"), units_sold(0), revenue(0) { } // not a good code as it is not using in-line initializer
+		Sales_data(istream &is) { read(is, *this); }
 
 private:
   	  	double avg_price() const;
@@ -79,24 +80,28 @@ bool Sales_data::end_of_read() {
 
 int main()
 {
-  	  	Sales_data total;
-  	  	if (read(cin, total)) {
-  	  	  	  	Sales_data trans;
-  	  	  	  	while (read(cin, trans)) {
-  	  	  	  	  	  	if (total.isbn() == trans.isbn())
-  	  	  	  	  	  	  	  	total.combine(trans);
-  	  	  	  	  	  	else {
-  	  	  	  	  	  	  	  	print(cout, total) << endl;
-  	  	  	  	  	  	  	  	total = trans;
-  	  	  	  	  	  	}
-  	  	  	  	  	  	if (trans.end_of_read()) {
-  	  	  	  	  	  	  	  	cout << "End of reading....\n";
-  	  	  	  	  	  	  	  	break;
-  	  	  	  	  	  	}
-  	  	  	  	}
-  	  	  	  	print(cout, total) << endl;
-  	  	} else {
-  	  	  	  	cerr << "No data?!" << endl;
-  	  	}
-  	  	return 0;
+	Sales_data test(cin);
+	Sales_data total;
+
+	if (read(cin, total)) {
+		Sales_data trans;
+		while (read(cin, trans)) {
+			if (total.isbn() == trans.isbn())
+				total.combine(trans);
+			else {
+				print(cout, total) << endl;
+				total = trans;
+			}
+			if (trans.end_of_read()) {
+				cout << "End of reading....\n";
+				break;
+			}
+		}
+		print(cout, total) << endl;
+	}
+	else {
+		cerr << "No data?!" << endl;
+	}
+
+	return 0;
 }
