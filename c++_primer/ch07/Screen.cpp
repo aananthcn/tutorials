@@ -9,18 +9,18 @@ using namespace std;
 int height;
 class Screen2 {
 public:
-    typedef string::size_type pos;
-    void setHeight(pos);
-    pos height = 0;
+  	  	typedef string::size_type pos;
+  	  	void setHeight(pos);
+  	  	pos height = 0;
 };
 
 Screen2::pos verify(Screen2::pos); // class member declared outside
 void Screen2::setHeight(Screen2::pos var) {
-    height = verify(var);
+  	  	height = verify(var);
 }
 
 Screen2::pos verify(Screen2::pos v) { // definition of the class member defined outside
-    return v;
+  	  	return v;
 }
 
 /////////////////////////////////
@@ -30,22 +30,22 @@ Type initVal();
 
 class Exercise {
 public:
-    typedef double Type;
-    Type setVal(Type);
-    Type initVal() { val = 0; return (Type) val; }
+  	  	typedef double Type;
+  	  	Type setVal(Type);
+  	  	Type initVal() { val = 0; return (Type) val; }
 
 private:
-    int val;
+  	  	int val;
 };
 
 Exercise::Type Exercise::setVal(Type parm) {
-    val = parm + initVal();
-    return val;
+  	  	val = parm + initVal();
+  	  	return val;
 }
 
 int main() {
-    Screen scr(5, 6, 'a');
+  	  	Screen scr(5, 6, 'a');
 
-    scr.display(cout);
-    scr.move(1, 2).set('B').set(2, 3, 'C').display(cout);
+  	  	scr.display(cout);
+  	  	scr.move(1, 2).set('B').set(2, 3, 'C').display(cout);
 }
