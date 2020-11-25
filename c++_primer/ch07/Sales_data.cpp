@@ -66,7 +66,7 @@ istream& read(istream& in, Sales_data& data) {
 
 ostream& print(ostream& os, const Sales_data& data) {
   	  	os << data.isbn() << " " << data.units_sold << " "
-  	  	<< data.revenue << " " << data.avg_price();
+  	  	<< data.revenue << " " << data.avg_price() << endl;
 
   	  	return os;
 }
@@ -78,9 +78,17 @@ bool Sales_data::end_of_read() {
   	  	  	  	return false;
 }
 
+Sales_data test2() {
+	cout << "\n" << __func__ << "()\n";
+}
+
 int main()
 {
-	Sales_data test(cin);
+	Sales_data test(cin), test2();
+	print(cout, test);
+	test2();
+
+	
 	Sales_data total;
 
 	if (read(cin, total)) {
