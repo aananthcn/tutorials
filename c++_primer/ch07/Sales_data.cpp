@@ -10,8 +10,13 @@ public:
   	  	bool end_of_read();
 
   	  	// constructor
-  	  	Sales_data() : bookNo("00-000"), units_sold(0), revenue(0) { } // not a good code as it is not using in-line initializer
-		Sales_data(istream &is) { read(is, *this); }
+        Sales_data() = default;
+  	  	Sales_data(const string &s, unsigned n, double p) : 
+			bookNo(s), units_sold(n), revenue(n*p) { } // not a good code as it is not using in-line initializer
+
+		// following constructors are made explicit so that implicit type conversions are prevented
+		explicit Sales_data(const string str) : bookNo(str), units_sold(0), revenue(0) { }
+		explicit Sales_data(istream &is) { read(is, *this); }
 
 private:
   	  	double avg_price() const;
@@ -85,8 +90,17 @@ Sales_data test2() {
 int main()
 {
 	Sales_data test(cin), test2();
+	Sales_data test3("baba-o-baba");
 	print(cout, test);
 	test2();
+	print(cout, test3);
+	const string null_book = "baba-o-baba";
+
+	// following line is commented as there is a implicit constructor type conversion
+	//print(cout, test3.combine(null_book));
+	print(cout, test3.combine(static_cast<Sales_data>(cin)));
+	Sales_data direct_init(null_book);
+	// Sales_data copy_init = null_book; <== this kind of initialization is not allowed, if explicit
 
 	
 	Sales_data total;
