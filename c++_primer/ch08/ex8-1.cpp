@@ -2,8 +2,8 @@
 
 using namespace std;
 
-istream& read_stream() {
-    static istream &is{cin};
+istream& read_stream(istream& ist) {
+    static istream &is{ist};
     string str = "";
 
     char c;
@@ -34,7 +34,10 @@ istream& read_stream() {
 
 
 int main() {
-    read_stream();
+    //read_stream(cin);
+
+    char i;
+    while(cin >> i) { cout << i; }
 
     return 0;
 }
