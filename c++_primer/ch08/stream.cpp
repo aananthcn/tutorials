@@ -14,7 +14,14 @@ int main() {
         cout << "input stream is in good shape!\n";
     }
     else {
-        cout << "input stream is in error state!\n";
+        if (is.eof())
+            cout << "input stream reach EOF\n";
+        else if (is.bad())
+            cout << "input stream reached bad state\n";
+        else if (is.fail())
+            cout << "input stream reached failed state\n";
+        else
+            cout << "input stream is in unknown error state!\n";
     }
     
 
