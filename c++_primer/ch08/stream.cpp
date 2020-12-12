@@ -22,7 +22,15 @@ int main() {
             cout << "input stream reached failed state\n";
         else
             cout << "input stream is in unknown error state!\n";
+
+        cout << "rdstate = " << is.rdstate() << "\n";
+        cout << "You are reading rdbuf now, press Ctrl+d to give a EOF\n\n";
+        cout << is.rdbuf() << "\n";
+        // clear the error
+        is.clear();
     }
+
+    cout << "rdstate = " << is.rdstate() << "\n";
     
 
     return 0;
